@@ -7,6 +7,8 @@ use File;
 use Illuminate\Http\Request;
 use Image;
 use Validator;
+use GrahamCampbell\Markdown\Facades\Markdown;
+
 
 class OrganiserCustomizeController extends MyBaseController
 {
@@ -32,7 +34,7 @@ class OrganiserCustomizeController extends MyBaseController
      * @param $organiser_id
      * @return mixed
      */
-    public function postEditOrganiser(Request $request, $organiser_id)
+    public function postEditOrganiser(Request $request, $organiser_id, Markdown $markdown)
     {
         $organiser = Organiser::scope()->find($organiser_id);
 
@@ -49,7 +51,7 @@ class OrganiserCustomizeController extends MyBaseController
         }
 
         $organiser->name = $request->get('name');
-        $organiser->about = prepare_markdown($request->get('about'));
+        $organiser->about = $markdown::convertToHtml($request->get('about') ?? "");
         $organiser->google_analytics_code = $request->get('google_analytics_code');
         $organiser->google_tag_manager_code = $request->get('google_tag_manager_code');
         $organiser->email = $request->get('email');

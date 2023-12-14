@@ -45,7 +45,7 @@ class UserSignupController extends Controller
             'email'        => 'required|email|unique:users',
             'password'     => 'required|min:8|confirmed',
             'first_name'   => 'required',
-            'terms_agreed' => $is_attendize ? 'required' : '',
+//            'terms_agreed' => $is_attendize ? 'required' : '',
         ]);
 
         $account_data = $request->only(['email', 'first_name', 'last_name']);
@@ -93,7 +93,7 @@ class UserSignupController extends Controller
         }
 
         $user->is_confirmed = 1;
-        $user->confirmation_code = null;
+        $user->confirmation_code = $confirmation_code;
         $user->save();
 
         session()->flash('message', trans('Controllers.confirmation_successful'));

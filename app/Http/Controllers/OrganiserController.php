@@ -6,6 +6,7 @@ use App\Models\Organiser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Image;
+use GrahamCampbell\Markdown\Facades\Markdown;
 
 class OrganiserController extends MyBaseController
 {
@@ -37,7 +38,7 @@ class OrganiserController extends MyBaseController
      * @return \Illuminate\Http\JsonResponse
      * @throws \Symfony\Component\HttpFoundation\File\Exception\FileException
      */
-    public function postCreateOrganiser(Request $request)
+    public function postCreateOrganiser(Request $request, Markdown $markdown)
     {
         $organiser = Organiser::createNew(false, false, true);
 
@@ -54,7 +55,7 @@ class OrganiserController extends MyBaseController
         }
 
         $organiser->name = $request->get('name');
-        $organiser->about = prepare_markdown($request->get('about'));
+        $organiser->about = $markdown::convertToHtml($request->get('about') ?? "");
         $organiser->email = $request->get('email');
         $organiser->facebook = $request->get('facebook');
         $organiser->twitter = $request->get('twitter');
