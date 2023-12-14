@@ -2,10 +2,11 @@ import { defineConfig } from "vite";
 import laravel from "laravel-vite-plugin";
 
 export default defineConfig({
-    plugins: [
-        laravel([
-            "resources/css/app.css",
-            "resources/assets/javascript/app.js",
-        ]),
-    ],
+    plugins: [laravel(["resources/js/app.js"])],
+    resolve: {
+        alias: {
+            "@": "/resources/js",
+            "@css": "/resources/css",
+        },
+    },
 });

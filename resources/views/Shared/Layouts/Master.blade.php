@@ -8,8 +8,6 @@
         @show
     </title>
 
-    @vite('resources/js/app.js')
-
     @include('Shared.Layouts.ViewJavascript')
 
     <!--Meta-->
@@ -21,7 +19,7 @@
     <!--/JS-->
 
     <!--Style-->
-    {!! Html::style(config('attendize.cdn_url_static_assets').'/assets/stylesheet/application.css') !!}
+    {{-- {!! Html::style(config('attendize.cdn_url_static_assets').'/assets/stylesheet/application.css') !!}--}}
     <!--/Style-->
 
     <!--rtl-style-->
@@ -31,6 +29,7 @@
     <!--/rtl-style-->
 
     @yield('head')
+    @vite(['resources/js/app.js'])
 </head>
 
 <body class="attendize">
