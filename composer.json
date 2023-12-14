@@ -17,7 +17,7 @@
         "doctrine/dbal": "^2.9",
         "dompdf/dompdf": "^0.8",
         "fideloper/proxy": "^4.2",
-        "graham-campbell/markdown": "11.1.0",
+        "graham-campbell/markdown": "13.1.2",
         "guzzlehttp/guzzle": "^6.4",
         "guzzlehttp/psr7": "^1.6",
         "intervention/image": "^2.5",
@@ -105,7 +105,10 @@
     "config": {
         "optimize-autoloader": true,
         "preferred-install": "dist",
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "php-http/discovery": true
+        }
     },
     "extra": {
         "laravel": {
