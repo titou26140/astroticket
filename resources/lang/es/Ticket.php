@@ -1,7 +1,6 @@
 <?php
 
-return array(
-    'access_codes'               => 'Códigos de acceso',
+return [
     'attendee_ref'               => 'Ref. de asistente',
     'coupon_codes'               => 'Códigos de cupón',
     'create_ticket'              => 'Crear entrada',
@@ -20,7 +19,6 @@ return array(
     'event'                      => 'Evento',
     'event_tickets'              => 'Entradas para el evento',
     'footer'                     => 'La entrada pierde su validez en el momento en que se abandona el recinto, no se permite el reingreso durante el evento.',
-    'id'                         => 'Identificación de la entrada',
     'n_tickets'                  => ':num entradas',
     'name'                       => 'Nombre',
     'no_tickets_yet'             => 'No hay entradas todavía',
@@ -33,7 +31,7 @@ return array(
     'questions'                  => 'Preguntas',
     'remaining'                  => 'Restante',
     'resume'                     => 'Resumen',
-    'revenue'                    => 'Ingresos (sin impuestos)',
+    'revenue'                    => 'Ingresos',
     'search_tickets'             => 'Buscar entradas....',
     'show_1d_barcode'            => 'Mostrar código de barras 1D en las entradas',
     'sold'                       => 'Vendido',
@@ -48,4 +46,4 @@ return array(
     'ticket_text_color'          => 'Color del texto de la entrada',
     'ticket_type'                => 'Tipo de entrada',
     'venue'                      => 'Lugar',
-);
+];

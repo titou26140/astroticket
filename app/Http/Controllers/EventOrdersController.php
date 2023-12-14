@@ -1,4 +1,6 @@
-<?php namespace App\Http\Controllers;
+<?php
+
+namespace App\Http\Controllers;
 
 use App\Cancellation\OrderCancellation;
 use App\Cancellation\OrderRefundException;
@@ -21,7 +23,7 @@ use Illuminate\Support\Facades\Lang;
 class EventOrdersController extends MyBaseController
 {
     /**
-     * Show event orders page
+     * Show event orders page.
      *
      * @param Request $request
      * @param string $event_id
@@ -48,10 +50,10 @@ class EventOrdersController extends MyBaseController
 
             $orders = $event->orders()
                 ->where(function ($query) use ($searchQuery) {
-                    $query->where('order_reference', 'like', $searchQuery . '%')
-                        ->orWhere('first_name', 'like', $searchQuery . '%')
-                        ->orWhere('email', 'like', $searchQuery . '%')
-                        ->orWhere('last_name', 'like', $searchQuery . '%');
+                    $query->where('order_reference', 'like', $searchQuery.'%')
+                        ->orWhere('first_name', 'like', $searchQuery.'%')
+                        ->orWhere('email', 'like', $searchQuery.'%')
+                        ->orWhere('last_name', 'like', $searchQuery.'%');
                 })
                 ->orderBy($sort_by, $sort_order)
                 ->paginate();
@@ -71,7 +73,7 @@ class EventOrdersController extends MyBaseController
     }
 
     /**
-     * Shows  'Manage Order' modal
+     * Shows  'Manage Order' modal.
      *
      * @param Request $request
      * @param $order_id
@@ -86,14 +88,14 @@ class EventOrdersController extends MyBaseController
 
         $data = [
             'order' => $order,
-            'orderService' => $orderService
+            'orderService' => $orderService,
         ];
 
         return view('ManageEvent.Modals.ManageOrder', $data);
     }
 
     /**
-     * Shows 'Edit Order' modal
+     * Shows 'Edit Order' modal.
      *
      * @param Request $request
      * @param $order_id
@@ -114,7 +116,7 @@ class EventOrdersController extends MyBaseController
     }
 
     /**
-     * Shows 'Cancel Order' modal
+     * Shows 'Cancel Order' modal.
      *
      * @param Request $request
      * @param $order_id
@@ -135,7 +137,7 @@ class EventOrdersController extends MyBaseController
     }
 
     /**
-     * Resend an entire order
+     * Resend an entire order.
      *
      * @param $order_id
      *
@@ -155,7 +157,7 @@ class EventOrdersController extends MyBaseController
     }
 
     /**
-     * Cancels an order
+     * Cancels an order.
      *
      * @param Request $request
      * @param $order_id
@@ -186,8 +188,7 @@ class EventOrdersController extends MyBaseController
 
         $order->update();
 
-
-        Session::flash('message', trans("Controllers.the_order_has_been_updated"));
+        Session::flash('message', trans('Controllers.the_order_has_been_updated'));
 
         return response()->json([
             'status'      => 'success',
@@ -196,7 +197,7 @@ class EventOrdersController extends MyBaseController
     }
 
     /**
-     * Cancels attendees in an order
+     * Cancels attendees in an order.
      * @param Request $request
      * @param $order_id
      * @return \Illuminate\Http\JsonResponse
@@ -227,6 +228,7 @@ class EventOrdersController extends MyBaseController
             OrderCancellation::make($order, $attendees)->cancel();
         } catch (OrderRefundException $e) {
             Log::error($e);
+
             return response()->json([
                 'status'  => 'error',
                 'message' => $e->getMessage(),
@@ -234,7 +236,7 @@ class EventOrdersController extends MyBaseController
         }
 
         // Done
-        Session::flash('message', trans("Controllers.successfully_refunded_and_cancelled"));
+        Session::flash('message', trans('Controllers.successfully_refunded_and_cancelled'));
 
         return response()->json([
             'status' => 'success',
@@ -243,7 +245,7 @@ class EventOrdersController extends MyBaseController
     }
 
     /**
-     * Exports order to popular file types
+     * Exports order to popular file types.
      *
      * @param $event_id
      * @param string $export_as Accepted: xls, xlsx, csv, pdf, html
@@ -252,11 +254,12 @@ class EventOrdersController extends MyBaseController
     {
         $event = Event::scope()->findOrFail($event_id);
         $date = date('d-m-Y-g.i.a');
+
         return (new OrdersExport($event->id))->download("orders-as-of-{$date}.{$export_as}");
     }
 
     /**
-     * shows 'Message Order Creator' modal
+     * shows 'Message Order Creator' modal.
      *
      * @param Request $request
      * @param $order_id
@@ -275,7 +278,7 @@ class EventOrdersController extends MyBaseController
     }
 
     /**
-     * Sends message to order creator
+     * Sends message to order creator.
      *
      * @param Request $request
      * @param $order_id
@@ -319,18 +322,18 @@ class EventOrdersController extends MyBaseController
                 $message->to($order->event->organiser->email)
                     ->from(config('attendize.outgoing_email_noreply'), $order->event->organiser->name)
                     ->replyTo($order->event->organiser->email, $order->event->organiser->name)
-                    ->subject($data['subject'] . trans("Email.organiser_copy"));
+                    ->subject($data['subject'].trans('Email.organiser_copy'));
             });
         }
 
         return response()->json([
             'status'  => 'success',
-            'message' => trans("Controllers.message_successfully_sent"),
+            'message' => trans('Controllers.message_successfully_sent'),
         ]);
     }
 
     /**
-     * Mark an order as payment received
+     * Mark an order as payment received.
      *
      * @param Request $request
      * @param $order_id
@@ -345,7 +348,7 @@ class EventOrdersController extends MyBaseController
 
         $order->save();
 
-        session()->flash('message', trans("Controllers.order_payment_status_successfully_updated"));
+        session()->flash('message', trans('Controllers.order_payment_status_successfully_updated'));
 
         return response()->json([
             'status' => 'success',

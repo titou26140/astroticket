@@ -1,11 +1,12 @@
 <?php
 /*************************************************************************
- Generated via "php artisan localization:missing" at 2018/04/19 18:57:21 
+ Generated via "php artisan localization:missing" at 2018/04/19 18:57:21
 *************************************************************************/
 
-return array (
+return [
+    //============================== New strings to translate ==============================//
+    'this_event_has_started' => 'This event has started.',
     //==================================== Translations ====================================//
-    'this_event_has_started' => 'Dit event is begonnen.',
     'create_tickets' => 'Creëer tickets',
     'edit_event_page_design' => 'Evenementpagina aanpassen',
     'edit_organiser_fees' => 'Bewerk organisator kosten',
@@ -22,4 +23,4 @@ return array (
     'ticket_sales_volume' => 'Ticket omzet',
     'tickets_sold' => 'Tickets verkocht',
     'website_embed_code' => 'Website Embed Code',
-);
+];

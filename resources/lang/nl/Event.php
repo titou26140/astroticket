@@ -1,9 +1,9 @@
 <?php
 /*************************************************************************
- Generated via "php artisan localization:missing" at 2018/04/26 10:54:45 
+ Generated via "php artisan localization:missing" at 2018/04/26 10:54:45
 *************************************************************************/
 
-return array (
+return [
   'address_details' => 'Adres',
   'address_line_1' => 'Adres',
   'address_line_1_placeholder' => 'Straatnaam 12b',
@@ -24,7 +24,7 @@ return array (
   'event_orders' => 'Evenement Bestellingen',
   'event_start_date' => 'Evenement Start Datum',
   'event_title' => 'Evenement Titel',
-  'event_title_placeholder' => 'bv.: :name conferentie',
+  'event_title_placeholder' => 'bv.: :name Presents Snollebollekes',
   'event_visibility' => 'Evenement weergeven',
   'go_live' => 'Evenement is live! Je kan dit ongedaan maken op de instellingen pagina.',
   'n_attendees_for_event' => ':num bezoekers voor het evenement: :name (:date)',
@@ -43,7 +43,7 @@ return array (
   'showing_num_of_orders' => 'Bekijk bestelling :0 van de :1 bestellingen in totaal',
   'tickets_sold' => 'Tickets verkocht',
   'venue_name' => 'Naam Locatie',
-  'venue_name_placeholder' => 'bv.: Stadszaal',
+  'venue_name_placeholder' => 'bv.: De Krokante Krab',
   'vis_hide' => 'Verberg het evenement voor bezoekers.',
   'vis_public' => 'Maak het evenement zichtbaar voor bezoekers.',
-);
+];

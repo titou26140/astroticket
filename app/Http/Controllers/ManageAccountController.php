@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-
 use App\Models\Account;
 use App\Models\AccountPaymentGateway;
 use App\Models\Currency;
@@ -28,7 +27,7 @@ use Illuminate\Support\Facades\Lang;
 class ManageAccountController extends MyBaseController
 {
     /**
-     * Show the account modal
+     * Show the account modal.
      *
      * @param  Request  $request
      * @return mixed
@@ -76,7 +75,7 @@ class ManageAccountController extends MyBaseController
     }
 
     /**
-     * Edit an account
+     * Edit an account.
      *
      * @param  Request  $request
      * @return JsonResponse
@@ -85,7 +84,7 @@ class ManageAccountController extends MyBaseController
     {
         $account = Account::find(Auth::user()->account_id);
 
-        if (!$account->validate($request->all())) {
+        if (! $account->validate($request->all())) {
             return response()->json([
                 'status'   => 'error',
                 'messages' => $account->errors(),
@@ -107,7 +106,7 @@ class ManageAccountController extends MyBaseController
     }
 
     /**
-     * Save account payment information
+     * Save account payment information.
      *
      * @param  Request  $request
      * @return mixed
@@ -122,13 +121,13 @@ class ManageAccountController extends MyBaseController
         $config = [];
 
         switch ($payment_gateway->name) {
-            case Stripe::GATEWAY_NAME :
+            case Stripe::GATEWAY_NAME:
                 $config = $request->get('stripe');
                 break;
-            case StripeSCA::GATEWAY_NAME :
+            case StripeSCA::GATEWAY_NAME:
                 $config = $request->get('stripe_sca');
                 break;
-            case Dummy::GATEWAY_NAME :
+            case Dummy::GATEWAY_NAME:
                 break;
 
         }
@@ -160,14 +159,14 @@ class ManageAccountController extends MyBaseController
     }
 
     /**
-     * Invite a user to the application
+     * Invite a user to the application.
      *
      * @return JsonResponse
      */
     public function postInviteUser(Request $request)
     {
         $rules = [
-            'email' => ['required', 'email', 'unique:users,email,NULL,id,account_id,' . Auth::user()->account_id],
+            'email' => ['required', 'email', 'unique:users,email,NULL,id,account_id,'.Auth::user()->account_id],
         ];
 
         $messages = [
@@ -204,8 +203,8 @@ class ManageAccountController extends MyBaseController
         Mail::send(Lang::locale().'.Emails.inviteUser', $data, static function (Message $message) use ($data) {
             $message->to($data['user']->email)
                 ->subject(trans('Email.invite_user', [
-                    'name' => $data['inviter']->first_name . ' ' . $data['inviter']->last_name,
-                    'app'  => config('attendize.app_name')
+                    'name' => $data['inviter']->first_name.' '.$data['inviter']->last_name,
+                    'app'  => config('attendize.app_name'),
                 ]));
         });
 

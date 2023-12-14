@@ -3,7 +3,7 @@
  * Generated via "php artisan localization:missing" at 2018/04/17 16:35:44
  *************************************************************************/
 
-return array(
+return [
     'connection_success' => 'Success, Your connection works!',
     'connection_failure' => 'Unable to connect! Please check your settings',
     'app_settings' => 'App settings',
@@ -24,9 +24,8 @@ return array(
     'files_n_folders_check' => 'Files & Folders Check',
     'install' => 'Install Attendize',
     'mail_encryption' => 'Mail Encryption',
-    'mail_driver' => 'Mail Driver',
-    'mail_driver_help' => 'To use PHP\'s <a target="_blank" href="http://php.net/manual/en/function.mail.php">mail</a> feature enter <b>mail</b> in this box and leave the below fields empty.',
     'mail_from_address' => 'Mail From Address',
+    'mail_from_help' => 'To use PHP\'s <a target="_blank" href="http://php.net/manual/en/function.mail.php">mail</a> feature enter <b>mail</b> in this box and leave the below fields empty.',
     'mail_from_name' => 'Mail From Name',
     'mail_host' => 'Mail Host',
     'mail_password' => 'Mail Password',
@@ -44,18 +43,8 @@ return array(
     'requirement_not_met' => 'Error: <b>:requirement</b> extension is not loaded',
     'setup' => 'Attendize Setup',
     'setup_completed' => 'Attendize Setup Already',
-    'setup_completed_already_message' => "An install file has been detected which means Attendize setup process has already completed. <br /> If you haven't setup a default user you can " .
+    'setup_completed_already_message' => "An install file has been detected which means Attendize setup process has already completed. <br /> If you haven't setup a default user you can ".
                                          "<a href='/signup'>Signup Default User</a><br />If you have already created a default user you can <a href='/login'>Login Here </a>",
     'test_database_connection' => 'Test Database Connection',
     'title' => 'Attendize Web Installer',
-    //upgrade strings
-    'upgrade' => 'Upgrade',
-    'upgrade_button' => 'Upgrade Attendize',
-    'new_version' => 'New version available for download.',
-    'current_version' => 'Your currently installed version is :version.',
-    'download_version' => 'There is a newer version available :version on <a href="https://github.com/attendize/attendize">GitHub</a>. Please download the code, copy it onto your server, and return to this page.',
-    'new_version_ready' => 'New version ready to install.',
-    'now_installing' => 'You\'ll now be installing the new version :version',
-    'upgrade_complete' => 'Upgrade Complete!',
-    'no_upgrade' => 'Nothing to upgrade!',
-);
+];
